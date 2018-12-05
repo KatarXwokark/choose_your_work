@@ -1,0 +1,19 @@
+package com.sample
+
+import com.sample.DroolsTest.Okienko;
+
+rule "init"
+	when
+	then
+		insert(new Okienko("Tak", "Nie", "Tak czy nie?"));
+end
+
+rule "Vaat???"
+	when
+		o : Okienko(getOdp() == Okienko.TAK, getQuestion() == "Tak czy nie?")
+	then
+		System.out.println("Vaat???");
+		o.nextQuestion("Tak", "Nie", "Nie czy tak?");
+		o.setOdp(Okienko.NIEWIEM);
+		update(o);
+end
