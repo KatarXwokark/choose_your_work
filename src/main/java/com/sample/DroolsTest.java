@@ -16,13 +16,35 @@ public class DroolsTest {
             // load up the knowledge base
 	        KieServices ks = KieServices.Factory.get();
     	    KieContainer kContainer = ks.getKieClasspathContainer();
-        	KieSession kSession = kContainer.newKieSession("ksession-rules");
+    	    KieSession kSession = kContainer.newKieSession("ksession-rules");
 
             // go !
-            kSession.fireAllRules();
+        	new Okienko("Solo", "Team", "Would you rather work solo or with a team?", kContainer);
         } catch (Throwable t) {
             t.printStackTrace();
         }
+    }
+    
+    public static class Odpowiedz{
+    	private String tekst;
+    	private int odp;
+    	
+    	public Odpowiedz(String tekst, int odp) {
+    		this.tekst = tekst;
+    		this.odp = odp;
+    	}
+    	
+    	public String gettekst() {
+    		return this.tekst;
+    	}
+    	
+    	public int getodp() {
+    		return this.odp;
+    	}
+    	
+    	public String toString() {
+    		return tekst + " " + odp;
+    	}
     }
     
     public static class Okienko extends Frame implements WindowListener{
@@ -39,25 +61,12 @@ public class DroolsTest {
     	
     	private int odp = NIEWIEM;
     	
-    	public int getOdp() {
-    		return this.odp;
-    	}
+    	private KieContainer kContainer;
+    	private KieSession kSession;
     	
-    	public void setOdp(int temp) {
-    		this.odp = temp;
-    	}
+    	private Okienko to = this;
     	
-    	public String getQuestion() {
-    		return pytanie.getText();
-    	}
-    	
-    	public void nextQuestion(String l, String p, String q) {
-    		pytanie.setText(q);
-    		lewy.setLabel(l);
-    		prawy.setLabel(p);
-    	}
-    	
-    	public Okienko(String l, String p, String q) {
+    	public Okienko(String l, String p, String q, KieContainer k) {
     		setLayout(new FlowLayout());
     		pytanie.setText(q);
     		lewy.setLabel(l);
@@ -67,14 +76,30 @@ public class DroolsTest {
     		prawy.setEnabled(true);
     		prawy.addActionListener(new ClickListenerright());
     		setTitle("choose_your_job");
-    		setSize(250, 100);
-    		setVisible(true);
+    		setSize(500, 150);
     		add(tekst);
     		add(pytanie);
     		add(przyciski);
     		add(lewy);
     		add(prawy);
     		addWindowListener(this);
+    		setVisible(true);
+    		this.kContainer = k;
+    		this.kSession = kContainer.newKieSession("ksession-rules");
+    	}
+    	
+    	public int getodp() {
+    		return this.odp;
+    	}
+    	
+    	public String getQuestion() {
+    		return this.pytanie.getText();
+    	}
+    	
+    	public void nextQuestion(String l, String p, String q) {
+    		pytanie.setText(q);
+    		lewy.setLabel(l);
+    		prawy.setLabel(p);
     	}
     	
     	public class ClickListenerleft implements ActionListener{
@@ -82,6 +107,9 @@ public class DroolsTest {
     		public void actionPerformed(ActionEvent evt) {
     			odp = TAK;
     			System.out.println(odp);
+    			kSession.insert(new Odpowiedz(pytanie.getText(), odp));
+    			kSession.insert(to);
+        		kSession.fireAllRules();
     		}
     	}
     	
@@ -90,6 +118,9 @@ public class DroolsTest {
     		public void actionPerformed(ActionEvent evt) {
     			odp = NIE;
     			System.out.println(odp);
+    			kSession.insert(new Odpowiedz(pytanie.getText(), odp));
+    			kSession.insert(to);
+        		kSession.fireAllRules();
     		}
     	}
     	

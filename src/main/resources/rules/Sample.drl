@@ -1,19 +1,22 @@
 package com.sample
 
 import com.sample.DroolsTest.Okienko;
+import com.sample.DroolsTest.Odpowiedz;
 
-rule "init"
+rule "Do you tend to live in the moment?"
 	when
+		o : Okienko("Would you rather work solo or with a team?".equals(getQuestion()))
+		odp : Odpowiedz("Would you rather work solo or with a team?".equals(gettekst()) && getodp() == Okienko.TAK)
 	then
-		insert(new Okienko("Tak", "Nie", "Tak czy nie?"));
+		o.nextQuestion("Yes", "No", "Do you tend to live in the moment?");
+		update(o);
 end
 
-rule "Vaat???"
+rule "Do you folow your gut when it comes to life choices?"
 	when
-		o : Okienko(getOdp() == Okienko.TAK, getQuestion() == "Tak czy nie?")
+		o : Okienko("Would you rather work solo or with a team?".equals(getQuestion()))
+		odp : Odpowiedz("Would you rather work solo or with a team?".equals(gettekst()) && getodp() == Okienko.NIE)
 	then
-		System.out.println("Vaat???");
-		o.nextQuestion("Tak", "Nie", "Nie czy tak?");
-		o.setOdp(Okienko.NIEWIEM);
+		o.nextQuestion("Yes", "No", "Do you folow your gut when it comes to life choices?");
 		update(o);
 end
