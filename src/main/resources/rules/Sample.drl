@@ -8,7 +8,7 @@ rule "Do you tend to live in the moment?"
 		o : Okienko("Would you rather work solo or with a team?".equals(getQuestion()))
 		odp : Odpowiedz("Would you rather work solo or with a team?".equals(gettekst()) && getodp() == Okienko.TAK)
 	then
-		o.nextQuestion("Yes", "No", "Do you tend to live in the moment?");
+		o.nextQuestion("Yes", "No", "Do you tend to live in the moment?", false);
 		update(o);
 end
 
@@ -17,6 +17,25 @@ rule "Do you folow your gut when it comes to life choices?"
 		o : Okienko("Would you rather work solo or with a team?".equals(getQuestion()))
 		odp : Odpowiedz("Would you rather work solo or with a team?".equals(gettekst()) && getodp() == Okienko.NIE)
 	then
-		o.nextQuestion("Yes", "No", "Do you folow your gut when it comes to life choices?");
+		o.nextQuestion("Yes", "No", "Do you folow your gut when it comes to life choices?", false);
 		update(o);
 end
+
+rule "Do you often wonder about the meaning of life?"
+	when
+		o : Okienko("Do you tend to live in the moment?".equals(getQuestion()))
+		odp : Odpowiedz("Do you tend to live in the moment?".equals(gettekst()) && getodp() == Okienko.TAK)
+	then
+		o.nextQuestion("Yes", "No", "Can you easily \"get\" metaphors?", false);
+		update(o);
+end
+
+rule "Are you people person?"
+	when
+		o : Okienko("Do you tend to live in the moment?".equals(getQuestion()))
+		odp : Odpowiedz("Do you tend to live in the moment?".equals(gettekst()) && getodp() == Okienko.NIE)
+	then
+		o.nextQuestion("Yes", "No", "Are you people person?", false);
+		update(o);
+end
+

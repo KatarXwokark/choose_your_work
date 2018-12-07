@@ -16,7 +16,6 @@ public class DroolsTest {
             // load up the knowledge base
 	        KieServices ks = KieServices.Factory.get();
     	    KieContainer kContainer = ks.getKieClasspathContainer();
-    	    KieSession kSession = kContainer.newKieSession("ksession-rules");
 
             // go !
         	new Okienko("Solo", "Team", "Would you rather work solo or with a team?", kContainer);
@@ -62,30 +61,28 @@ public class DroolsTest {
     	private int odp = NIEWIEM;
     	
     	private KieContainer kContainer;
-    	private KieSession kSession;
     	
     	private Okienko to = this;
     	
     	public Okienko(String l, String p, String q, KieContainer k) {
     		setLayout(new FlowLayout());
-    		pytanie.setText(q);
-    		lewy.setLabel(l);
-    		prawy.setLabel(p);
-    		lewy.setEnabled(true);
-    		lewy.addActionListener(new ClickListenerleft());
-    		prawy.setEnabled(true);
-    		prawy.addActionListener(new ClickListenerright());
+    		this.pytanie.setText(q);
     		setTitle("choose_your_job");
     		setSize(500, 150);
-    		add(tekst);
-    		add(pytanie);
-    		add(przyciski);
-    		add(lewy);
-    		add(prawy);
+    		add(this.tekst);
+    		add(this.pytanie);
+    		add(this.przyciski);
+        	this.lewy.setLabel(l);
+        	this.prawy.setLabel(p);
+        	this.lewy.setEnabled(true);
+        	this.lewy.addActionListener(new ClickListenerleft());
+        	this.prawy.setEnabled(true);
+        	this.prawy.addActionListener(new ClickListenerright());
+    		add(this.lewy);
+    		add(this.prawy);
     		addWindowListener(this);
     		setVisible(true);
     		this.kContainer = k;
-    		this.kSession = kContainer.newKieSession("ksession-rules");
     	}
     	
     	public int getodp() {
@@ -96,17 +93,24 @@ public class DroolsTest {
     		return this.pytanie.getText();
     	}
     	
-    	public void nextQuestion(String l, String p, String q) {
-    		pytanie.setText(q);
-    		lewy.setLabel(l);
-    		prawy.setLabel(p);
+    	public void nextQuestion(String l, String p, String q, boolean end) {
+    		this.pytanie.setText(q);
+    		if(end) {
+    			this.lewy.addActionListener(new Terminator());
+    			this.prawy.addActionListener(new Terminator());
+    		} else {
+        		this.lewy.setLabel(l);
+        		this.prawy.setLabel(p);
+    		}
+    		this.odp = NIEWIEM;
     	}
     	
     	public class ClickListenerleft implements ActionListener{
     		@Override
     		public void actionPerformed(ActionEvent evt) {
+    			KieSession kSession = kContainer.newKieSession("ksession-rules");
     			odp = TAK;
-    			System.out.println(odp);
+    			System.out.println(pytanie.getText() + " " + odp);
     			kSession.insert(new Odpowiedz(pytanie.getText(), odp));
     			kSession.insert(to);
         		kSession.fireAllRules();
@@ -116,11 +120,18 @@ public class DroolsTest {
     	public class ClickListenerright implements ActionListener{
     		@Override
     		public void actionPerformed(ActionEvent evt) {
+    			KieSession kSession = kContainer.newKieSession("ksession-rules");
     			odp = NIE;
-    			System.out.println(odp);
+    			System.out.println(pytanie.getText() + " " + odp);
     			kSession.insert(new Odpowiedz(pytanie.getText(), odp));
     			kSession.insert(to);
         		kSession.fireAllRules();
+    		}
+    	}
+    	public class Terminator implements ActionListener{
+    		@Override
+    		public void actionPerformed(ActionEvent evt) {
+    			System.exit(0);
     		}
     	}
     	
