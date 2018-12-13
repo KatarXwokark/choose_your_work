@@ -98,6 +98,9 @@ public class DroolsTest {
     		if(end) {
     			this.lewy.addActionListener(new Terminator());
     			this.prawy.addActionListener(new Terminator());
+        		this.prawy.setLabel(" ");
+            	this.prawy.setEnabled(false);
+        		this.lewy.setLabel("End");
     		} else {
         		this.lewy.setLabel(l);
         		this.prawy.setLabel(p);
