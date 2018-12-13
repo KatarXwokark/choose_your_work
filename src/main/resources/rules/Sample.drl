@@ -3,7 +3,535 @@ package com.sample
 import com.sample.DroolsTest.Okienko;
 import com.sample.DroolsTest.Odpowiedz;
 
-rule "Do you tend to live in the moment?"
+
+rule "Have you ever used the term dialectic desituationism to denote the absurdity, and hence the fatal flaw, of semiotic reality?_TAK"
+	when
+		o : Okienko("Have you ever used the term dialectic desituationism to denote the absurdity, and hence the fatal flaw, of semiotic reality?".equals(getQuestion()))
+		odp : Odpowiedz("Have you ever used the term dialectic desituationism to denote the absurdity, and hence the fatal flaw, of semiotic reality?".equals(gettekst()) && getodp() == Okienko.TAK)
+	then
+		o.nextQuestion("Yes", "No", "Philisophy", true);
+		update(o);
+end
+rule "Have you ever used the term dialectic desituationism to denote the absurdity, and hence the fatal flaw, of semiotic reality?_NIE"
+	when
+		o : Okienko("Have you ever used the term dialectic desituationism to denote the absurdity, and hence the fatal flaw, of semiotic reality?".equals(getQuestion()))
+		odp : Odpowiedz("Have you ever used the term dialectic desituationism to denote the absurdity, and hence the fatal flaw, of semiotic reality?".equals(gettekst()) && getodp() == Okienko.NIE)
+	then
+		o.nextQuestion("Yes", "No", "English/Foreign Language", true);
+		update(o);
+end
+
+rule "Do you doodle a lot during class?_TAK"
+	when
+		o : Okienko("Do you doodle a lot during class?".equals(getQuestion()))
+		odp : Odpowiedz("Do you doodle a lot during class?".equals(gettekst()) && getodp() == Okienko.TAK)
+	then
+		o.nextQuestion("Yes", "No", "Visual Art/Architecture", true);
+		update(o);
+end
+rule "Do you doodle a lot during class?_NIE"
+	when
+		o : Okienko("Do you doodle a lot during class?".equals(getQuestion()))
+		odp : Odpowiedz("Do you doodle a lot during class?".equals(gettekst()) && getodp() == Okienko.NIE)
+	then
+		o.nextQuestion("Yes", "No", "Have you ever used the term dialectic desituationism to denote the absurdity, and hence the fatal flaw, of semiotic reality?", false);
+		update(o);
+end
+
+rule "Have you ever fixed something with duct tape or WD40?_TAK"
+	when
+		o : Okienko("Have you ever fixed something with duct tape or WD40?".equals(getQuestion()))
+		odp : Odpowiedz("Have you ever fixed something with duct tape or WD40?".equals(gettekst()) && getodp() == Okienko.TAK)
+	then
+		o.nextQuestion("Yes", "No", "Do you love working with your hands?", false);
+		update(o);
+end
+rule "Have you ever fixed something with duct tape or WD40?_NIE"
+	when
+		o : Okienko("Have you ever fixed something with duct tape or WD40?".equals(getQuestion()))
+		odp : Odpowiedz("Have you ever fixed something with duct tape or WD40?".equals(gettekst()) && getodp() == Okienko.NIE)
+	then
+		o.nextQuestion("Yes", "No", "Personal & Culinary Services", true);
+		update(o);
+end
+
+rule "Can you easily get metaphors?_TAK"
+	when
+		o : Okienko("Can you easily get metaphors?".equals(getQuestion()))
+		odp : Odpowiedz("Can you easily get metaphors?".equals(gettekst()) && getodp() == Okienko.TAK)
+	then
+		o.nextQuestion("Yes", "No", "Do you doodle a lot during class?", false);
+		update(o);
+end
+rule "Can you easily get metaphors?_NIE"
+	when
+		o : Okienko("Can you easily get metaphors?".equals(getQuestion()))
+		odp : Odpowiedz("Can you easily get metaphors?".equals(gettekst()) && getodp() == Okienko.NIE)
+	then
+		o.nextQuestion("Yes", "No", "Do you love working with your hands?", false);
+		update(o);
+end
+
+rule "Do you often wonder about the meaning of life?_TAK"
+	when
+		o : Okienko("Do you often wonder about the meaning of life?".equals(getQuestion()))
+		odp : Odpowiedz("Do you often wonder about the meaning of life?".equals(gettekst()) && getodp() == Okienko.TAK)
+	then
+		o.nextQuestion("Yes", "No", "Can you easily get metaphors?", false);
+		update(o);
+end
+rule "Do you often wonder about the meaning of life?_NIE"
+	when
+		o : Okienko("Do you often wonder about the meaning of life?".equals(getQuestion()))
+		odp : Odpowiedz("Do you often wonder about the meaning of life?".equals(gettekst()) && getodp() == Okienko.NIE)
+	then
+		o.nextQuestion("Yes", "No", "Is How ___ works in your recent search history?", false);
+		update(o);
+end
+
+rule "Do you love working with your hands?_TAK"
+	when
+		o : Okienko("Do you love working with your hands?".equals(getQuestion()))
+		odp : Odpowiedz("Do you love working with your hands?".equals(gettekst()) && getodp() == Okienko.TAK)
+	then
+		o.nextQuestion("Yes", "No", "Have you ever fixed something with duct tape or WD40?", false);
+		update(o);
+end
+rule "Do you love working with your hands?_NIE"
+	when
+		o : Okienko("Do you love working with your hands?".equals(getQuestion()))
+		odp : Odpowiedz("Do you love working with your hands?".equals(gettekst()) && getodp() == Okienko.NIE)
+	then
+		o.nextQuestion("Yes", "No", "Does wearing a lab coat to work seem like a dream come true?", false);
+		update(o);
+end
+
+rule "Do you tend to live in the moment?_TAK"
+	when
+		o : Okienko("Do you tend to live in the moment?".equals(getQuestion()))
+		odp : Odpowiedz("Do you tend to live in the moment?".equals(gettekst()) && getodp() == Okienko.TAK)
+	then
+		o.nextQuestion("Yes", "No", "Do you often wonder about the meaning of life?", false);
+		update(o);
+end
+rule "Do you tend to live in the moment?_NIE"
+	when
+		o : Okienko("Do you tend to live in the moment?".equals(getQuestion()))
+		odp : Odpowiedz("Do you tend to live in the moment?".equals(gettekst()) && getodp() == Okienko.NIE)
+	then
+		o.nextQuestion("Yes", "No", "Are you a people person?", false);
+		update(o);
+end
+
+rule "Is How ___ works in your recent search history?_TAK"
+	when
+		o : Okienko("Is How ___ works in your recent search history?".equals(getQuestion()))
+		odp : Odpowiedz("Is How ___ works in your recent search history?".equals(gettekst()) && getodp() == Okienko.TAK)
+	then
+		o.nextQuestion("Yes", "No", "Do you love working with your hands?", false);
+		update(o);
+end
+rule "Is How ___ works in your recent search history?_NIE"
+	when
+		o : Okienko("Is How ___ works in your recent search history?".equals(getQuestion()))
+		odp : Odpowiedz("Is How ___ works in your recent search history?".equals(gettekst()) && getodp() == Okienko.NIE)
+	then
+		o.nextQuestion("Yes", "No", "Are you squeamish?", false);
+		update(o);
+end
+
+rule "Does wearing a lab coat to work seem like a dream come true?_TAK"
+	when
+		o : Okienko("Does wearing a lab coat to work seem like a dream come true?".equals(getQuestion()))
+		odp : Odpowiedz("Does wearing a lab coat to work seem like a dream come true?".equals(gettekst()) && getodp() == Okienko.TAK)
+	then
+		o.nextQuestion("Yes", "No", "Biochemistry/Physical Sciences", true);
+		update(o);
+end
+rule "Does wearing a lab coat to work seem like a dream come true?_NIE"
+	when
+		o : Okienko("Does wearing a lab coat to work seem like a dream come true?".equals(getQuestion()))
+		odp : Odpowiedz("Does wearing a lab coat to work seem like a dream come true?".equals(gettekst()) && getodp() == Okienko.NIE)
+	then
+		o.nextQuestion("Yes", "No", "Is art important to you? ", false);
+		update(o);
+end
+
+rule "Are you a people person?_TAK"
+	when
+		o : Okienko("Are you a people person?".equals(getQuestion()))
+		odp : Odpowiedz("Are you a people person?".equals(gettekst()) && getodp() == Okienko.TAK)
+	then
+		o.nextQuestion("Yes", "No", "Are you good with numbers?", false);
+		update(o);
+end
+rule "Are you a people person?_NIE"
+	when
+		o : Okienko("Are you a people person?".equals(getQuestion()))
+		odp : Odpowiedz("Are you a people person?".equals(gettekst()) && getodp() == Okienko.NIE)
+	then
+		o.nextQuestion("Yes", "No", "Is How ___ works in your recent search history?", false);
+		update(o);
+end
+
+rule "Are you squeamish?_TAK"
+	when
+		o : Okienko("Are you squeamish?".equals(getQuestion()))
+		odp : Odpowiedz("Are you squeamish?".equals(gettekst()) && getodp() == Okienko.TAK)
+	then
+		o.nextQuestion("Yes", "No", "Does wearing a lab coat to work seem like a dream come true?", false);
+		update(o);
+end
+rule "Are you squeamish?_NIE"
+	when
+		o : Okienko("Are you squeamish?".equals(getQuestion()))
+		odp : Odpowiedz("Are you squeamish?".equals(gettekst()) && getodp() == Okienko.NIE)
+	then
+		o.nextQuestion("Yes", "No", "Empathetic?", false);
+		update(o);
+end
+
+rule "Is art important to you? _TAK"
+	when
+		o : Okienko("Is art important to you? ".equals(getQuestion()))
+		odp : Odpowiedz("Is art important to you? ".equals(gettekst()) && getodp() == Okienko.TAK)
+	then
+		o.nextQuestion("Yes", "No", "Do you doodle a lot during class?", false);
+		update(o);
+end
+rule "Is art important to you? _NIE"
+	when
+		o : Okienko("Is art important to you? ".equals(getQuestion()))
+		odp : Odpowiedz("Is art important to you? ".equals(gettekst()) && getodp() == Okienko.NIE)
+	then
+		o.nextQuestion("Yes", "No", "Is math like a second language to you?", false);
+		update(o);
+end
+
+rule "Is math like a second language to you?_TAK"
+	when
+		o : Okienko("Is math like a second language to you?".equals(getQuestion()))
+		odp : Odpowiedz("Is math like a second language to you?".equals(gettekst()) && getodp() == Okienko.TAK)
+	then
+		o.nextQuestion("Yes", "No", "Math", true);
+		update(o);
+end
+rule "Is math like a second language to you?_NIE"
+	when
+		o : Okienko("Is math like a second language to you?".equals(getQuestion()))
+		odp : Odpowiedz("Is math like a second language to you?".equals(gettekst()) && getodp() == Okienko.NIE)
+	then
+		o.nextQuestion("Yes", "No", "Computer Sciences/Engineering", true);
+		update(o);
+end
+
+rule "Empathetic?_TAK"
+	when
+		o : Okienko("Empathetic?".equals(getQuestion()))
+		odp : Odpowiedz("Empathetic?".equals(gettekst()) && getodp() == Okienko.TAK)
+	then
+		o.nextQuestion("Yes", "No", "Are you willing to spend another 7+ years in school?", false);
+		update(o);
+end
+rule "Empathetic?_NIE"
+	when
+		o : Okienko("Empathetic?".equals(getQuestion()))
+		odp : Odpowiedz("Empathetic?".equals(gettekst()) && getodp() == Okienko.NIE)
+	then
+		o.nextQuestion("Yes", "No", "Does wearing a lab coat to work seem like a dream come true?", false);
+		update(o);
+end
+
+rule "Are you good with numbers?_TAK"
+	when
+		o : Okienko("Are you good with numbers?".equals(getQuestion()))
+		odp : Odpowiedz("Are you good with numbers?".equals(gettekst()) && getodp() == Okienko.TAK)
+	then
+		o.nextQuestion("Yes", "No", "Are you squeamish?", false);
+		update(o);
+end
+rule "Are you good with numbers?_NIE"
+	when
+		o : Okienko("Are you good with numbers?".equals(getQuestion()))
+		odp : Odpowiedz("Are you good with numbers?".equals(gettekst()) && getodp() == Okienko.NIE)
+	then
+		o.nextQuestion("Yes", "No", "Are you willing to spend another 7+ years in school?", false);
+		update(o);
+end
+
+rule "Would you want to focus on mental health?_TAK"
+	when
+		o : Okienko("Would you want to focus on mental health?".equals(getQuestion()))
+		odp : Odpowiedz("Would you want to focus on mental health?".equals(gettekst()) && getodp() == Okienko.TAK)
+	then
+		o.nextQuestion("Yes", "No", "Mental & Social Health Services", true);
+		update(o);
+end
+rule "Would you want to focus on mental health?_NIE"
+	when
+		o : Okienko("Would you want to focus on mental health?".equals(getQuestion()))
+		odp : Odpowiedz("Would you want to focus on mental health?".equals(gettekst()) && getodp() == Okienko.NIE)
+	then
+		o.nextQuestion("Yes", "No", "Nursing, Rehab & Therapy", true);
+		update(o);
+end
+
+rule "Do you follow your gut when it comes to life choices?_TAK"
+	when
+		o : Okienko("Do you follow your gut when it comes to life choices?".equals(getQuestion()))
+		odp : Odpowiedz("Do you follow your gut when it comes to life choices?".equals(gettekst()) && getodp() == Okienko.TAK)
+	then
+		o.nextQuestion("Yes", "No", "Do you consider yourself a leader?", false);
+		update(o);
+end
+rule "Do you follow your gut when it comes to life choices?_NIE"
+	when
+		o : Okienko("Do you follow your gut when it comes to life choices?".equals(getQuestion()))
+		odp : Odpowiedz("Do you follow your gut when it comes to life choices?".equals(gettekst()) && getodp() == Okienko.NIE)
+	then
+		o.nextQuestion("Yes", "No", "Are you a thrill seeker?", false);
+		update(o);
+end
+
+rule "Are you a thrill seeker?_TAK"
+	when
+		o : Okienko("Are you a thrill seeker?".equals(getQuestion()))
+		odp : Odpowiedz("Are you a thrill seeker?".equals(gettekst()) && getodp() == Okienko.TAK)
+	then
+		o.nextQuestion("Yes", "No", "Are you good with numbers?", false);
+		update(o);
+end
+rule "Are you a thrill seeker?_NIE"
+	when
+		o : Okienko("Are you a thrill seeker?".equals(getQuestion()))
+		odp : Odpowiedz("Are you a thrill seeker?".equals(gettekst()) && getodp() == Okienko.NIE)
+	then
+		o.nextQuestion("Yes", "No", "Are you passionate about helping to improve health standards?", false);
+		update(o);
+end
+
+rule "Are you willing to spend another 7+ years in school?_TAK"
+	when
+		o : Okienko("Are you willing to spend another 7+ years in school?".equals(getQuestion()))
+		odp : Odpowiedz("Are you willing to spend another 7+ years in school?".equals(gettekst()) && getodp() == Okienko.TAK)
+	then
+		o.nextQuestion("Yes", "No", "Would you like to work directly with patients?", false);
+		update(o);
+end
+rule "Are you willing to spend another 7+ years in school?_NIE"
+	when
+		o : Okienko("Are you willing to spend another 7+ years in school?".equals(getQuestion()))
+		odp : Odpowiedz("Are you willing to spend another 7+ years in school?".equals(gettekst()) && getodp() == Okienko.NIE)
+	then
+		o.nextQuestion("Yes", "No", "Are you good at interviews and reading people?", false);
+		update(o);
+end
+
+rule "Would you like to work directly with patients?_TAK"
+	when
+		o : Okienko("Would you like to work directly with patients?".equals(getQuestion()))
+		odp : Odpowiedz("Would you like to work directly with patients?".equals(gettekst()) && getodp() == Okienko.TAK)
+	then
+		o.nextQuestion("Yes", "No", "Would you want to focus on mental health?", false);
+		update(o);
+end
+rule "Would you like to work directly with patients?_NIE"
+	when
+		o : Okienko("Would you like to work directly with patients?".equals(getQuestion()))
+		odp : Odpowiedz("Would you like to work directly with patients?".equals(gettekst()) && getodp() == Okienko.NIE)
+	then
+		o.nextQuestion("Yes", "No", "Clinical Lab Science/Health & Medical Admin/Public Health", true);
+		update(o);
+end
+
+rule "Are you a big picture king of person?_TAK"
+	when
+		o : Okienko("Are you a big picture king of person?".equals(getQuestion()))
+		odp : Odpowiedz("Are you a big picture king of person?".equals(gettekst()) && getodp() == Okienko.TAK)
+	then
+		o.nextQuestion("Yes", "No", "Business Managment", true);
+		update(o);
+end
+rule "Are you a big picture king of person?_NIE"
+	when
+		o : Okienko("Are you a big picture king of person?".equals(getQuestion()))
+		odp : Odpowiedz("Are you a big picture king of person?".equals(gettekst()) && getodp() == Okienko.NIE)
+	then
+		o.nextQuestion("Yes", "No", "Accounting & Finance", true);
+		update(o);
+end
+
+rule "Could you sell ice to an Eskimo?_TAK"
+	when
+		o : Okienko("Could you sell ice to an Eskimo?".equals(getQuestion()))
+		odp : Odpowiedz("Could you sell ice to an Eskimo?".equals(gettekst()) && getodp() == Okienko.TAK)
+	then
+		o.nextQuestion("Yes", "No", "Sales & Marketing", true);
+		update(o);
+end
+rule "Could you sell ice to an Eskimo?_NIE"
+	when
+		o : Okienko("Could you sell ice to an Eskimo?".equals(getQuestion()))
+		odp : Odpowiedz("Could you sell ice to an Eskimo?".equals(gettekst()) && getodp() == Okienko.NIE)
+	then
+		o.nextQuestion("Yes", "No", "Are you a big picture king of person?", false);
+		update(o);
+end
+
+rule "Is justice more important than mercy?_TAK"
+	when
+		o : Okienko("Is justice more important than mercy?".equals(getQuestion()))
+		odp : Odpowiedz("Is justice more important than mercy?".equals(gettekst()) && getodp() == Okienko.TAK)
+	then
+		o.nextQuestion("Yes", "No", "Law and Legal Services/Public Admin/Security & Protective Services", true);
+		update(o);
+end
+rule "Is justice more important than mercy?_NIE"
+	when
+		o : Okienko("Is justice more important than mercy?".equals(getQuestion()))
+		odp : Odpowiedz("Is justice more important than mercy?".equals(gettekst()) && getodp() == Okienko.NIE)
+	then
+		o.nextQuestion("Yes", "No", "Social Services/Theological Studies", true);
+		update(o);
+end
+
+rule "Could you learn to love Microsoft Excel?_TAK"
+	when
+		o : Okienko("Could you learn to love Microsoft Excel?".equals(getQuestion()))
+		odp : Odpowiedz("Could you learn to love Microsoft Excel?".equals(gettekst()) && getodp() == Okienko.TAK)
+	then
+		o.nextQuestion("Yes", "No", "Could you sell ice to an Eskimo?", false);
+		update(o);
+end
+rule "Could you learn to love Microsoft Excel?_NIE"
+	when
+		o : Okienko("Could you learn to love Microsoft Excel?".equals(getQuestion()))
+		odp : Odpowiedz("Could you learn to love Microsoft Excel?".equals(gettekst()) && getodp() == Okienko.NIE)
+	then
+		o.nextQuestion("Yes", "No", "Is justice more important than mercy?", false);
+		update(o);
+end
+
+rule "Do you consider yourself a leader?_TAK"
+	when
+		o : Okienko("Do you consider yourself a leader?".equals(getQuestion()))
+		odp : Odpowiedz("Do you consider yourself a leader?".equals(gettekst()) && getodp() == Okienko.TAK)
+	then
+		o.nextQuestion("Yes", "No", "Could you learn to love Microsoft Excel?", false);
+		update(o);
+end
+rule "Do you consider yourself a leader?_NIE"
+	when
+		o : Okienko("Do you consider yourself a leader?".equals(getQuestion()))
+		odp : Odpowiedz("Do you consider yourself a leader?".equals(gettekst()) && getodp() == Okienko.NIE)
+	then
+		o.nextQuestion("Yes", "No", "Are you passionate about helping to improve health standards?", false);
+		update(o);
+end
+
+rule "Is your workspace messy?_TAK"
+	when
+		o : Okienko("Is your workspace messy?".equals(getQuestion()))
+		odp : Odpowiedz("Is your workspace messy?".equals(gettekst()) && getodp() == Okienko.TAK)
+	then
+		o.nextQuestion("Yes", "No", "Could you learn to love Microsoft Excel?", false);
+		update(o);
+end
+rule "Is your workspace messy?_NIE"
+	when
+		o : Okienko("Is your workspace messy?".equals(getQuestion()))
+		odp : Odpowiedz("Is your workspace messy?".equals(gettekst()) && getodp() == Okienko.NIE)
+	then
+		o.nextQuestion("Yes", "No", "Are you interested in science?", false);
+		update(o);
+end
+
+rule "Are you passionate about helping to improve health standards?_TAK"
+	when
+		o : Okienko("Are you passionate about helping to improve health standards?".equals(getQuestion()))
+		odp : Odpowiedz("Are you passionate about helping to improve health standards?".equals(gettekst()) && getodp() == Okienko.TAK)
+	then
+		o.nextQuestion("Yes", "No", "Are you interested in science?", false);
+		update(o);
+end
+rule "Are you passionate about helping to improve health standards?_NIE"
+	when
+		o : Okienko("Are you passionate about helping to improve health standards?".equals(getQuestion()))
+		odp : Odpowiedz("Are you passionate about helping to improve health standards?".equals(gettekst()) && getodp() == Okienko.NIE)
+	then
+		o.nextQuestion("Yes", "No", "Is your workspace messy?", false);
+		update(o);
+end
+
+rule "Are you interested in science?_TAK"
+	when
+		o : Okienko("Are you interested in science?".equals(getQuestion()))
+		odp : Odpowiedz("Are you interested in science?".equals(gettekst()) && getodp() == Okienko.TAK)
+	then
+		o.nextQuestion("Yes", "No", "Are you willing to spend another 7+ years in school?", false);
+		update(o);
+end
+rule "Are you interested in science?_NIE"
+	when
+		o : Okienko("Are you interested in science?".equals(getQuestion()))
+		odp : Odpowiedz("Are you interested in science?".equals(gettekst()) && getodp() == Okienko.NIE)
+	then
+		o.nextQuestion("Yes", "No", "Are you good at interviews and reading people?", false);
+		update(o);
+end
+
+rule "Are you interested in how the mind works?_TAK"
+	when
+		o : Okienko("Are you interested in how the mind works?".equals(getQuestion()))
+		odp : Odpowiedz("Are you interested in how the mind works?".equals(gettekst()) && getodp() == Okienko.TAK)
+	then
+		o.nextQuestion("Yes", "No", "Psychology", true);
+		update(o);
+end
+rule "Are you interested in how the mind works?_NIE"
+	when
+		o : Okienko("Are you interested in how the mind works?".equals(getQuestion()))
+		odp : Odpowiedz("Are you interested in how the mind works?".equals(gettekst()) && getodp() == Okienko.NIE)
+	then
+		o.nextQuestion("Yes", "No", "Could you sell ice to an Eskimo?", false);
+		update(o);
+end
+
+rule "Are you good at interviews and reading people?_TAK"
+	when
+		o : Okienko("Are you good at interviews and reading people?".equals(getQuestion()))
+		odp : Odpowiedz("Are you good at interviews and reading people?".equals(gettekst()) && getodp() == Okienko.TAK)
+	then
+		o.nextQuestion("Yes", "No", "Are you passionate about writing?", false);
+		update(o);
+end
+rule "Are you good at interviews and reading people?_NIE"
+	when
+		o : Okienko("Are you good at interviews and reading people?".equals(getQuestion()))
+		odp : Odpowiedz("Are you good at interviews and reading people?".equals(gettekst()) && getodp() == Okienko.NIE)
+	then
+		o.nextQuestion("Yes", "No", "Edycation/History/Social Sciences", true);
+		update(o);
+end
+
+rule "Are you passionate about writing?_TAK"
+	when
+		o : Okienko("Are you passionate about writing?".equals(getQuestion()))
+		odp : Odpowiedz("Are you passionate about writing?".equals(gettekst()) && getodp() == Okienko.TAK)
+	then
+		o.nextQuestion("Yes", "No", "Communications & Journalism", true);
+		update(o);
+end
+rule "Are you passionate about writing?_NIE"
+	when
+		o : Okienko("Are you passionate about writing?".equals(getQuestion()))
+		odp : Odpowiedz("Are you passionate about writing?".equals(gettekst()) && getodp() == Okienko.NIE)
+	then
+		o.nextQuestion("Yes", "No", "Are you interested in how the mind works?", false);
+		update(o);
+end
+
+rule "Would you rather work solo or with a team?_TAK"
 	when
 		o : Okienko("Would you rather work solo or with a team?".equals(getQuestion()))
 		odp : Odpowiedz("Would you rather work solo or with a team?".equals(gettekst()) && getodp() == Okienko.TAK)
@@ -11,31 +539,11 @@ rule "Do you tend to live in the moment?"
 		o.nextQuestion("Yes", "No", "Do you tend to live in the moment?", false);
 		update(o);
 end
-
-rule "Do you folow your gut when it comes to life choices?"
+rule "Would you rather work solo or with a team?_NIE"
 	when
 		o : Okienko("Would you rather work solo or with a team?".equals(getQuestion()))
 		odp : Odpowiedz("Would you rather work solo or with a team?".equals(gettekst()) && getodp() == Okienko.NIE)
 	then
-		o.nextQuestion("Yes", "No", "Do you folow your gut when it comes to life choices?", false);
+		o.nextQuestion("Yes", "No", "Do you follow your gut when it comes to life choices?", false);
 		update(o);
 end
-
-rule "Do you often wonder about the meaning of life?"
-	when
-		o : Okienko("Do you tend to live in the moment?".equals(getQuestion()))
-		odp : Odpowiedz("Do you tend to live in the moment?".equals(gettekst()) && getodp() == Okienko.TAK)
-	then
-		o.nextQuestion("Yes", "No", "Can you easily \"get\" metaphors?", false);
-		update(o);
-end
-
-rule "Are you people person?"
-	when
-		o : Okienko("Do you tend to live in the moment?".equals(getQuestion()))
-		odp : Odpowiedz("Do you tend to live in the moment?".equals(gettekst()) && getodp() == Okienko.NIE)
-	then
-		o.nextQuestion("Yes", "No", "Are you people person?", false);
-		update(o);
-end
-
